@@ -90,3 +90,8 @@ Copy MIFARE Classic Value Block #05 to Value Block #06
 |:-------:|:-------:|:------:|:------:|:------:|:------:|:------:|
 |FFh      |D7h      |00h     |Source  |N° Bytes|VP_OP   |Target  |
 |FFh      |D7h      |00h     |05h     |02h     |03h     |06h     |
+
+
+RESPONSES:
+9000h -> OK
+For error responses look up in https://www.eftlab.com/knowledge-base/complete-list-of-apdu-responses/
