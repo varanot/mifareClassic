@@ -14,7 +14,7 @@ import javax.smartcardio.*;
  * @version 1.1
  * @since 2020/08/31
  */
-public class Main {
+public class WriteBlock {
     
     // Fields
     byte[] keyA = {(byte)0xA5,(byte)0xA4,(byte)0xA3,
@@ -60,7 +60,7 @@ public class Main {
     }
     
     // Constructor
-    public Main(){
+    public WriteBlock(){
 	  try{
             // show the list of available terminals
             TerminalFactory factory = TerminalFactory.getDefault();
@@ -89,7 +89,7 @@ public class Main {
     }
  
     // Write Block #04, Sector #01
-    public void write(byte[] newData){
+    public void write(byte[] newData, int block, int sector){
         System.out.println("Write Block #04");
         ArrayList<String>response = new ArrayList<String>();
         try{
@@ -101,10 +101,7 @@ public class Main {
             // establish a connection with the card
 	          Card card = terminal.connect("T=1");
 	          this.channel = card.getBasicChannel();
-	  	      
-            int sector = 1;
-            int block = 4;
-            
+	  	               
             // load the key for sector #01 -> Get challenge command
             byte[] c_loadKey = {(byte) 0xFF, (byte) 0x82, (byte) 0x00, (byte) 0x00, (byte) 0x06,
                 keyB[5], keyB[4], keyB[3],
@@ -156,11 +153,14 @@ public class Main {
     
     // Run & Debug
     public static void main(String[] args) {
-        Main test = new Main();
+        WriteBlock test = new WriteBlock();
         System.out.println("Terminals: "+test.terminals);
         System.out.println("Terminal seleccionado: "+test.terminal);
         System.out.println("UID: 0x"+test.rUID);
         System.out.println("**********************************************************");
+	
+	int block = 04;
+	int sector = 01;
         	
         byte[] newData = {(byte)0x0F,(byte)0x0E,(byte)0x0D,(byte)0x0C,
                           (byte)0x0B,(byte)0x0A,(byte)0x09,(byte)0x08,
@@ -171,7 +171,8 @@ public class Main {
                           (byte)0x00,(byte)0x00,(byte)0x00,(byte)0x008,
                           (byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,
                           (byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00};*/
-        test.write(newData); 
+			  
+        test.write(newData,block,sector); 
     }    
     
     
