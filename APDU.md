@@ -9,7 +9,7 @@ A command-response pair, namely a command APDU followed by a response APDU in th
 
 
 | FIELD  | DESCRIPTION        | NUMBER OF BYTES |
-|:------:|:------------------:|:---------------:|
+|:-------|:-------------------|:---------------:|
 |CMDHead |CLA:Class Byte      |1                |
 |CMDHead |INS:Instruction Byte|1                |
 |CMDHead |P1/P2:Parameter Byte|2                |
@@ -18,7 +18,7 @@ A command-response pair, namely a command APDU followed by a response APDU in th
 |LeField |Lenght of Data      |0, 1, 2 o 3      |
 
 | FIELD  | DESCRIPTION        | NUMBER OF BYTES |
-|:------:|:------------------:|:---------------:|
+|:-------|:-------------------|:---------------:|
 |RDataFd |SW1/SW2:Status Bytes|2                |
 
 If the process is aborted, then the card may become unresponsive. However if a response APDU occurs, then the response data field shall be absent and SW1-SW2 shall indicate an error.
