@@ -30,10 +30,10 @@ Examples
 --------
 
 Load MIFARE Classic Key #FF FF FF FF FF FF
-|   CLA   |   INS   |    P1    |   P2   |   Lc   |       Data       |
-|:-------:|:-------:|:--------:|:------:|:------:|:----------------:|
-|FFh      |82h      |KStructure|KNumber |Lenght  |       Data       |
-|FFh      |82h      |00h       |00h     |06h     |FF FF FF FF FF FFh|
+|   CLA   |   INS   |    P1    |   P2   |   Lc   | DataB1 | DataB2 | DataB3 | DataB4 | DataB5 | DataB6 |   
+|:-------:|:-------:|:--------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
+|FFh      |82h      |KStructure|KNumber |Lenght  | DataB1 | DataB2 | DataB3 | DataB4 | DataB5 | DataB6 |      
+|FFh      |82h      |00h       |00h     |06h     | FFh    | FFh    |FFh     | FFh    | FFh    | FFh    |
 
 
 Authenticate MIFARE Classic Block #04 with loaded Key type B
@@ -50,9 +50,43 @@ Read MIFARE Classic Block #04 all 16 Bytes
 |FFh      |B0h      |00h     |04h     |10h     |
 
 
-Write MIFARE Classic Block #05 all 16 Bytes
-|   CLA   |   INS   |   P1   |   P2   |   Le   |                    Data                           |
-|:-------:|:-------:|:------:|:------:|:------:|:-------------------------------------------------:|
-|FFh      |D6h      |00h     |Block N°|N° Bytes|                    Data                           |
-|FFh      |D6h      |00h     |05h     |10h     |10 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0Fh|
+Write MIFARE Classic Block #04 all 16 Bytes
+|   CLA   |   INS   |   P1   |   P2   |   Le   |                   Data #16                     |
+|:-------:|:-------:|:------:|:------:|:------:|:----------------------------------------------:|
+|FFh      |D6h      |00h     |Block N°|N° Bytes|                    Data                        |
+|FFh      |D6h      |00h     |04h     |10h     |00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0Fh|
 
+
+Store MIFARE Classic Value Block #05 (Create Value Block with value of 1)
+|   CLA   |   INS   |   P1   |   P2   |   Lc   | DataB1 | DataB2 | DataB3 | DataB4 | DataB5 |
+|:-------:|:-------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
+|FFh      |D7h      |00h     |Block N°|N° Bytes|VP_OP   |VP_VALUE|VP_VALUE|VP_VALUE|VP_VALUE|
+|FFh      |D7h      |00h     |05h     |05h     |00h     |00h     |00h     |00h     |01h     |
+
+
+Increment MIFARE Classic Value Block #05 (Increment Value Block with value of 5)
+|   CLA   |   INS   |   P1   |   P2   |   Lc   | DataB1 | DataB2 | DataB3 | DataB4 | DataB5 |
+|:-------:|:-------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
+|FFh      |D7h      |00h     |Block N°|N° Bytes|VP_OP   |VP_VALUE|VP_VALUE|VP_VALUE|VP_VALUE|
+|FFh      |D7h      |00h     |05h     |05h     |01h     |00h     |00h     |00h     |05h     |
+
+
+Decrement MIFARE Classic Value Block #05 (Decrement Value Block with value of 3)
+|   CLA   |   INS   |   P1   |   P2   |   Lc   | DataB1 | DataB2 | DataB3 | DataB4 | DataB5 |
+|:-------:|:-------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
+|FFh      |D7h      |00h     |Block N°|N° Bytes|VP_OP   |VP_VALUE|VP_VALUE|VP_VALUE|VP_VALUE|
+|FFh      |D7h      |00h     |05h     |05h     |02h     |00h     |00h     |00h     |03h     |
+
+
+Read MIFARE Classic Value Block #05 
+|   CLA   |   INS   |   P1   |   P2   |   Le   |
+|:-------:|:-------:|:------:|:------:|:------:|
+|FFh      |B1h      |00h     |Block N°|N° Bytes|
+|FFh      |B1h      |00h     |05h     |04h     |
+
+
+Copy MIFARE Classic Value Block #05 to Value Block #06
+|   CLA   |   INS   |   P1   |   P2   |   Lc   | DataB1 | DataB2 |
+|:-------:|:-------:|:------:|:------:|:------:|:------:|:------:|
+|FFh      |D7h      |00h     |Source  |N° Bytes|VP_OP   |Target  |
+|FFh      |D7h      |00h     |05h     |02h     |03h     |06h     |
