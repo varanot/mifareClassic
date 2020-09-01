@@ -20,3 +20,14 @@ The API is defined by classes in the package javax.smartcardio. They can be clas
 |ResponseAPDU      |A response APDU as defined in ISO/IEC 7816-4                       |
 |TerminalFactory   |A factory for CardTerminal objects                                 |
 |TerminalFactorySpi|The TerminalFactorySpi class defines the service provider interface|
+
+|ENUM               |DESCRIPTION                                | 
+|:------------------|:------------------------------------------|
+|CardTerminals.State|Enumeration of atrributes of a CardTerminal|
+
+|EXCEPTION              |DESCRIPTION                                                                                                  |
+|:----------------------|:------------------------------------------------------------------------------------------------------------|
+|CardException          |Exception for errors that occur during communication with the Smart Card stack or the card itself            |
+|CardNotPresentException|Exception thrown when an application tries to establish a connection with a terminal that has no card present|
+
+For more information look up https://docs.oracle.com/javase/9/docs/api/javax/smartcardio/package-summary.html
