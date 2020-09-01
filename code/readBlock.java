@@ -14,7 +14,7 @@ import javax.smartcardio.*;
  * @version 1.1
  * @since 2020/08/31
  */
-public class Main {
+public class ReadBlock {
     
     // Fields
     byte[] keyA = {(byte)0xA5,(byte)0xA4,(byte)0xA3,
@@ -60,7 +60,7 @@ public class Main {
     }
     
     // Constructor
-    public Main(){
+    public ReadBlock(){
 	    try{
             // show the list of available terminals
             TerminalFactory factory = TerminalFactory.getDefault();
@@ -150,7 +150,7 @@ public class Main {
     
     // Run & Debug
     public static void main(String[] args) {
-        Main test = new Main();
+        ReadBlock test = new ReadBlock();
         System.out.println("Terminals: "+test.terminals);
         System.out.println("Terminal seleccionado: "+test.terminal);
         System.out.println("UID: 0x"+test.rUID);
