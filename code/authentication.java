@@ -3,7 +3,7 @@
  * Attribution 3.0 Unported license, and the underlying source code used to 
  * format and display that content is licensed under the MIT license.
  */
-package com.arin.pract01;
+package com.arin.authenClassic;
 
 import java.util.ArrayList;
 import java.util.List;
